@@ -1,7 +1,7 @@
 import pickle
 import json
 from dataclasses import dataclass, field
-from typing import *
+from typing import Dict, Any
 
 
 @dataclass
@@ -74,14 +74,14 @@ class Book:
         self.cost = value
 
     def as_dict(self):
-        return {'name': self.name, 'year': self.year, 'vendor': self.vendor, 'power': self.power,
-                'color': self.color, 'cost': self.cost}
+        return {'name': self.name, 'year': self.year, 'publisher': self.publisher, 'genre': self.genre,
+                'author': self.author, 'cost': self.cost}
 
     def json_serialize(self) -> str:
         return json.dumps(self.as_dict())
 
     @staticmethod
-    def json_deserialize(value: str) -> Dict[str, str]:
+    def json_deserialize(value: str) -> Dict[str, Any]:
         return json.loads(value)
 
     def pickle_serialize(self) -> bytes:

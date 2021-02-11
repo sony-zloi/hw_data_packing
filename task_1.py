@@ -1,7 +1,7 @@
 import pickle
 import json
 from dataclasses import dataclass, field
-from typing import Dict
+from typing import Dict, Any
 
 
 @dataclass
@@ -76,7 +76,7 @@ class Car:
         return json.dumps(self.as_dict())
 
     @staticmethod
-    def json_deserialize(value: str) -> Dict[str, str]:
+    def json_deserialize(value: str) -> Dict[str, Any]:
         return json.loads(value)
 
     def pickle_serialize(self) -> bytes:
@@ -86,7 +86,3 @@ class Car:
     def pickle_deserialize(value: bytes) -> "Car":
         return pickle.loads(value)
 
-
-car1 = Car("Audi", 2001, "VAG", 230, "white", 25000)
-print(car1.pickle_serialize())
-print(car1.pickle_deserialize(car1.pickle_serialize()))
